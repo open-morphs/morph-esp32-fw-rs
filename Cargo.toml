@@ -11,8 +11,8 @@ license = "MIT"
 categories = ["embedded", "firmware", "ble"]
 keywords = ["embedded", "firmware", "bluetooth", "ble", "earbuds"]
 repository = "https://github.com/morph-audio/morph-fw-rs.git"
-description = "Rust-based firmware relacement for the Morph Earbuds charging case"
-homepage = "https://github.com/morph-audio/morph-fw-rs.git"
+description = "Rust-based firmware replacement for the Morph InfiniConnect Earbuds charging case"
+homepage = "https://github.com/morph-audio/morph-fw-rs"
 
 [features]
 native = ["esp-idf-sys/native"]
