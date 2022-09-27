@@ -1,0 +1,72 @@
+name: CI tests workflow
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: "Run tests on the various variants of the Rust firmware"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        variant:
+          - esp32
+    steps:
+      - name: "Checkout sources"
+        uses: actions/checkout@v2
+
+      - name: "Cache Espressif assets"
+        id: espressif-cache
+        if: matrix.variant == 'esp32'
+        uses: actions/cache@v3
+        with:
+          path: ~/.espressif/
+          key: espressif-cache-esp32
+          restore-keys: espressif-cache-esp32
+
+      - name: "Cache Rust assets"
+        id: rust-cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: true
+
+      - name: "Install Rust for Xtensa (ESP32 variant)"
+        if: matrix.variant == 'esp32' && steps.espressif-cache.outputs.cache-hit != 'true'
+        uses: esp-rs/xtensa-toolchain@v1.3
+        with:
+          default: true
+          version: "1.63.0"
+          ldproxy: true
+
+      - name: "Install utilities for testing."
+        if: steps.rust-cache.outputs.cache-hit != 'true'
+        run: |
+          cargo install --locked cargo-audit || true
+
+      - name: "Run lint check on the project"
+        uses: marcopolo/cargo@master
+        with:
+          command: fmt
+          args: --all -- --check
+          working-directory: ./variants/${{ matrix.variant }}
+
+      - name: "Run Clippy on project"
+        uses: reinismu/clippy-check@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: ./variants/${{ matrix.variant }}
+
+      - name: "Build cargo-audit on project"
+        uses: marcopolo/cargo@master
+        with:
+          command: audit
+          working-directory: ./variants/${{ matrix.variant }}
+
+            #      - name: "Build tests on project"
+            #        uses: marcopolo/cargo@master
+            #        with:
+            #          command: test
+            #          args: --bin morph-fw-rs-esp32
+            #          working-directory: ./variants/${{ matrix.variant }}

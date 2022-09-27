@@ -3,7 +3,6 @@ name = "morph-fw-rs-esp32"
 version = "0.1.0"
 authors = ["Dom Rodriguez <shymega@shymega.org.uk>"]
 edition = "2021"
-resolver = "2"
 
 [profile.release]
 opt-level = "s"
