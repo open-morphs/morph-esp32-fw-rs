@@ -22,15 +22,15 @@ jobs:
         if: matrix.variant == 'esp32'
         uses: actions/cache@v3
         with:
-          path: ~/.espressif/
+          path: |
+            ~/.espressif/
+            ~/.rustup/toolchains/esp
           key: espressif-cache-esp32
           restore-keys: espressif-cache-esp32
 
       - name: "Cache Rust assets"
         id: rust-cache
         uses: Swatinem/rust-cache@v2
-        with:
-          cache-on-failure: true
 
       - name: "Install Rust for Xtensa (ESP32 variant)"
         if: matrix.variant == 'esp32' && steps.espressif-cache.outputs.cache-hit != 'true'
