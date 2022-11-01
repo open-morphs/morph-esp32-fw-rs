@@ -40,11 +40,6 @@ jobs:
           version: "1.63.0"
           ldproxy: true
 
-      - name: "Install utilities for testing."
-        if: steps.rust-cache.outputs.cache-hit != 'true'
-        run: |
-          cargo install --locked cargo-audit || true
-
       - name: "Run lint check on the project"
         uses: marcopolo/cargo@master
         with:
@@ -56,12 +51,6 @@ jobs:
         uses: reinismu/clippy-check@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ./variants/${{ matrix.variant }}
-
-      - name: "Build cargo-audit on project"
-        uses: marcopolo/cargo@master
-        with:
-          command: audit
           working-directory: ./variants/${{ matrix.variant }}
 
             #      - name: "Build tests on project"
