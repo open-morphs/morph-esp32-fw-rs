@@ -19,5 +19,5 @@ esp-idf-sys = { version = "0.31.6", features = ["binstart"] }
 esp-idf-hal = "0.38.1"
 
 [build-dependencies]
-embuild = "0.29"
+embuild = "0.30"
 anyhow = "1"
