@@ -16,7 +16,7 @@ pio = ["esp-idf-sys/pio"]
 
 [dependencies]
 esp-idf-sys = { version = "0.32.0", features = ["binstart"] }
-esp-idf-hal = "0.39.1"
+esp-idf-hal = "0.40.1"
 
 [build-dependencies]
 embuild = "0.31"
