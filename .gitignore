@@ -1,4 +1,4 @@
 /.vscode
-.embuild
-/variants/*/target
-/variants/*/Cargo.lock
+/.embuild
+/target
+/Cargo.lock
