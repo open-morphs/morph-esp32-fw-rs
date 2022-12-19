@@ -12,12 +12,13 @@ debug = true # Symbols are nice and they don't increase the size on Flash
 opt-level = "z"
 
 [features]
+default = ["pio"]
 pio = ["esp-idf-sys/pio"]
 
 [dependencies]
-esp-idf-sys = { version = "0.31.6", features = ["binstart"] }
-esp-idf-hal = "0.38.1"
+esp-idf-sys = { version = "*", features = ["binstart"] }
+esp-idf-hal = "*"
 
 [build-dependencies]
-embuild = "0.30"
+embuild = "*"
 anyhow = "1"
