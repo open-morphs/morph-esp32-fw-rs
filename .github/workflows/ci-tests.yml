@@ -34,7 +34,7 @@ jobs:
 
       - name: "Install Rust for Xtensa (ESP32 variant)"
         if: matrix.variant == 'esp32' && steps.espressif-cache.outputs.cache-hit != 'true'
-        uses: esp-rs/xtensa-toolchain@v1.4
+        uses: esp-rs/xtensa-toolchain@v1.5
         with:
           default: true
           version: "1.63.0"
