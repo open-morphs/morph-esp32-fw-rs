@@ -24,5 +24,5 @@ esp-idf-svc = "0.45.0"
 anyhow = "1"
 
 [build-dependencies]
-embuild = "0.31.0"
+embuild = "0.31.1"
 anyhow = "1"
