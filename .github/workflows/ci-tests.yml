@@ -45,17 +45,14 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
-          working-directory: ./variants/${{ matrix.variant }}
 
       - name: "Run Clippy on project"
         uses: reinismu/clippy-check@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          working-directory: ./variants/${{ matrix.variant }}
 
-            #      - name: "Build tests on project"
-            #        uses: marcopolo/cargo@master
-            #        with:
-            #          command: test
-            #          args: --bin morph-fw-rs-esp32
-            #          working-directory: ./variants/${{ matrix.variant }}
+#      - name: "Build tests on project"
+#        uses: marcopolo/cargo@master
+#        with:
+#          command: test
+#          args: --bin morph-fw-rs-esp32
