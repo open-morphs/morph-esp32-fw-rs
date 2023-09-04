@@ -15,7 +15,7 @@ jobs:
           - esp32
     steps:
       - name: "Checkout sources"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: "Cache Espressif assets"
         id: espressif-cache
